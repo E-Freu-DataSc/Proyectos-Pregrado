@@ -1,4 +1,6 @@
-def create_map_folium(self, data_path):
+import pandas as pd
+import folium
+def create_map_folium(data_path: str):
         # Read the data
         data = pd.read_csv(data_path, encoding="latin1")
         # Assuming 'Coordinates' is a column with a list of [lat, lon]
@@ -13,7 +15,7 @@ def create_map_folium(self, data_path):
             folium.Marker([lat, lon], popup=folium.Popup(popup_text, max_width=300)).add_to(mapa)
         mapa.save('mapa_premios_oscar.html')
 
-def create_map_dash(self, data_path):
+def create_map_dash(data_path):
     # Read the data
     data = pd.read_csv(data_path, encoding="latin1")
     # Assuming 'Coordinates' is a column with a list of [lat, lon]
