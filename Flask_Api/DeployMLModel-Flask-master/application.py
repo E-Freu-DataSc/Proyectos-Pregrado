@@ -9,4 +9,4 @@ def home():
     return render_template('mapa_premios_oscar.html')
 
 if __name__ == "__main__":
-    application.run(debug=True)
+    application.run(debug=True, port=8888)
