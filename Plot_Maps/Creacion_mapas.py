@@ -1,5 +1,6 @@
 import pandas as pd
 import folium
+import os
 def create_map_folium(data_path: str):
         # Read the data
         data = pd.read_csv(data_path, encoding="latin1")
@@ -13,7 +14,11 @@ def create_map_folium(data_path: str):
             lat, lon = coords[0], coords[1]
             popup_text = f"Lugar nacimiento: {row['birthplace']}<br>Premiado: {row['person']}<br>Año premiación: {row['year_of_award']}"
             folium.Marker([lat, lon], popup=folium.Popup(popup_text, max_width=300)).add_to(mapa)
-        mapa.save('mapa_premios_oscar.html')
+        save_directory = r"Flask_Api\Deploy_Mapa_Oscars\templates"
+        os.makedirs(save_directory, exist_ok=True)
+        map_file_path = os.path.join(save_directory, 'mapa_premios_oscar.html')
+        mapa.save(map_file_path)
+        return mapa
 
 def create_map_dash(data_path):
     # Read the data

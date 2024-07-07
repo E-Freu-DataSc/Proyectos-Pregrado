@@ -16,15 +16,12 @@ import dash_html_components as html
 import sys
 import os 
 
-sys.path.append(r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Proyecto_7_Esteban")
+sys.path.append(r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado")
 
-from Proyecto_7_Esteban.Preprocess_data.Def.Guardar_o_importar_dataframe_con_Srapping import Guardar_o_importar_Srapping_fechas_nacimiento
-from Proyecto_7_Esteban.Plot_Maps.Creacion_datos_coordenadas import añadir_coordenadas
-from Proyecto_7_Esteban.Plot_Maps.Creacion_mapas import create_map_folium, create_map_dash
-from Proyecto_7_Esteban.Preprocess_data.Def.Definir_remplazar_nulos_y_aplicar_datatime import Definir_remplazar_nulos_y_aplicar_datatime
-from Proyecto_7_Esteban.Preprocess_data.Def.eliminar_puntuacion_y_espacios_a_guion_bajo import eliminar_puntuacion_y_espacios_a_guion_bajo
-from Proyecto_7_Esteban.Preprocess_data.Def.Ultimos_ajustes import ultimos_ajustes
-
+from Preprocess_data.Def.Guardar_o_importar_dataframe_con_Srapping import Guardar_o_importar_Srapping_fechas_nacimiento
+from Preprocess_data.Def.Definir_remplazar_nulos_y_aplicar_datatime import Definir_remplazar_nulos_y_aplicar_datatime
+from Preprocess_data.Def.eliminar_puntuacion_y_espacios_a_guion_bajo import eliminar_puntuacion_y_espacios_a_guion_bajo
+from Preprocess_data.Def.Ultimos_ajustes import Ultimos_ajustes
 class DataProcessor:
     """
     Methods
@@ -35,7 +32,7 @@ class DataProcessor:
 
     def __init__(self, data_path):
         self.data_path = data_path
-        self.processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Proyecto_7_Esteban\processed\Oscars-demographics-DFE-updated_to_Scrapping.csv"
+        self.processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Datasets\processed\Oscars-demographics-DFE-updated_to_Scrapping.csv"
         self.data = None
         self.categorical_columns = ["_golden", "_unit_state", "_trusted_judgments", "birthplace", "date_of_birth", "race_ethnicity", "sexual_orientation", "year_of_award", "award", "biourl", "birthplace_gold", "date_of_birth_gold", "movie", "person", "race_ethnicity_gold", "sexual_orientation_gold", "year_of_award_gold"]
         
@@ -48,13 +45,12 @@ class DataProcessor:
 
         self.data = Definir_remplazar_nulos_y_aplicar_datatime(self.data)    
         self.data = Guardar_o_importar_Srapping_fechas_nacimiento(self.data, self.processed_data_path)
-        self.data = ultimos_ajustes(self.data)
+        self.data = Ultimos_ajustes(self.data)
         
 
 if __name__ == "__main__":
-    data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Proyecto_7_Esteban\raw\Oscars-demographics-DFE.csv"
+    data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Datasets\raw\Oscars-demographics-DFE.csv"
     processor = DataProcessor(data_path)
     processor.preprocess_data()
     
 
-self.data = añadir_coordenadas(self.data)
