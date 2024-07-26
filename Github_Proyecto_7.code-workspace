@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "path": ".."
+        }
+    ],
+    "settings": {
+        "python.pythonPath": "C:/Users/Usuario/anaconda3/envs/Entorno_Proyecto_7/python.exe",
+        "jupyter.jupyterServerKernelName": "Entorno_Proyecto_7 (Python 3.8.19)"
+    }
+}
