@@ -11,7 +11,7 @@ class DataProcessor:
         self.data_path = data_path
         self.data = None
         self.categorical_columns = ["_golden", "_unit_state", "_trusted_judgments", "birthplace", "date_of_birth", "race_ethnicity", "sexual_orientation", "year_of_award", "award", "biourl", "birthplace_gold", "date_of_birth_gold", "movie", "person", "race_ethnicity_gold", "sexual_orientation_gold", "year_of_award_gold"]
-        self.processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Datasets_Usados_Guardados_y_final\raw\processed"
+        self.processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Datasets_Usados_Guardados_y_final\processed"
 
     def preprocess_data(self):
         self.data = pd.read_csv(self.data_path, encoding="latin1")
@@ -38,9 +38,9 @@ class DataProcessor:
             "Oscars_para_graficos.csv": ["birthplace", "date_of_birth", "race_ethnicity", "sexual_orientation", "year_of_award", "award", "movie", "person"],
             "Oscars_con_coordenadas.csv": ["birthplace", "date_of_birth", "race_ethnicity", "sexual_orientation", "year_of_award", "award", "movie", "person", "Coordinates"]
         }
+
+        base_dir = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Datasets_Usados_Guardados_y_final\processed"
         
-        base_dir = os.path.dirname(self.processed_data_path)
-    
         for filename, columns in save_paths.items():
             try:
                 save_path = os.path.join(base_dir, filename)

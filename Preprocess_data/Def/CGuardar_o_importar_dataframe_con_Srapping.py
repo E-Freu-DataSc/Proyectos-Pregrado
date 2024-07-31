@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import os
 
 def Guardar_o_importar_Srapping_fechas_nacimiento(data):
-    processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Datasets_Usados_Guardados_y_final\raw\processed"
+    processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Datasets_Usados_Guardados_y_final\processed"
     file_path = os.path.join(processed_data_path, "Scrapped.csv")
     
     if os.path.exists(file_path):
