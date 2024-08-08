@@ -1,5 +1,11 @@
 import pandas as pd
-def Definir_remplazar_nulos_y_aplicar_datatime(self):
+def Remplazo_nulos_y_aplicar_datatime(self):
+    """ 
+    Se utilizan valores de las columnas "_golden" y no-golden, las cuales compartén valores,
+    para rellenar entre ellas los valoren nulos y faltantes.
+    Tambien se rellenarón valores de fechas de nacimiento con valores encontrados en Biourl.
+    Se cambia el formato de fechas a datatime.
+    """
     self['year_of_award_gold'] = self['year_of_award_gold'].astype(str).str.replace(r'\.$', '', regex=True).fillna(pd.NA)
     self['year_of_award_gold'] = self['year_of_award_gold'].astype(float).astype('Int64').fillna(pd.NA)
 
@@ -14,26 +20,21 @@ def Definir_remplazar_nulos_y_aplicar_datatime(self):
         self.loc[self['person'] == person, ['date_of_birth_gold', 'date_of_birth']] = dob
 
     # Creating masks for both False and True _golden values
-        mask_false = (self["_golden"] == False)
-        mask_true = (self["_golden"] == True)
+    mask_false = (self["_golden"] == False)
+    mask_true = (self["_golden"] == True)
 
-        columns_to_update = ['date_of_birth', 'race_ethnicity', 'religion', 'birthplace', 'sexual_orientation', 'year_of_award']
-
-        for column in columns_to_update:
-            gold_column = f"{column}_gold"
-
-            # Updating for _golden == False
-            self.loc[mask_false & self[column].notnull(), gold_column] = self.loc[mask_false & self[column].notnull(), column]
-            self.loc[mask_false & self[gold_column].notnull(), column] = self.loc[mask_false & self[gold_column].notnull(), gold_column]
-
-            # Updating for _golden == True
-            self.loc[mask_true & self[column].notnull(), gold_column] = self.loc[mask_true & self[column].notnull(), column]
-            self.loc[mask_true & self[gold_column].notnull(), column] = self.loc[mask_true & self[gold_column].notnull(), gold_column]
-
+    columns_to_update = ['date_of_birth', 'race_ethnicity', 'religion', 'birthplace', 'sexual_orientation', 'year_of_award']
 
     for column in columns_to_update:
         gold_column = f"{column}_gold"
-        self[gold_column] = self[column]
+
+        # Updating for _golden == False
+        self.loc[mask_false & self[column].notnull(), gold_column] = self.loc[mask_false & self[column].notnull(), column]
+        self.loc[mask_false & self[gold_column].notnull(), column] = self.loc[mask_false & self[gold_column].notnull(), gold_column]
+
+        # Updating for _golden == True
+        self.loc[mask_true & self[column].notnull(), gold_column] = self.loc[mask_true & self[column].notnull(), column]
+        self.loc[mask_true & self[gold_column].notnull(), column] = self.loc[mask_true & self[gold_column].notnull(), gold_column]
 
     self['birthplace_gold'] = self['birthplace']
     self['date_of_birth_gold'] = self['date_of_birth']
