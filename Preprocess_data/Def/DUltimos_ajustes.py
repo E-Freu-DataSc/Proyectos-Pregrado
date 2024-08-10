@@ -1,6 +1,8 @@
 import pandas as pd
 
 def Ultimos_ajustes(Data):
+    "Insertar las ultimas 2 fechas de nacimiento que no se encontraron durante el scrapping"
+    
     Data['date_of_birth_gold'] = pd.to_datetime(Data['date_of_birth_gold'], errors='coerce')
     Data['date_of_birth'] = pd.to_datetime(Data['date_of_birth'], errors='coerce')
 

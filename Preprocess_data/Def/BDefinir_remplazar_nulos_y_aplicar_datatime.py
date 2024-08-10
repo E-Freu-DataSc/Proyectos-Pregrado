@@ -1,9 +1,9 @@
 import pandas as pd
-def Remplazo_nulos_y_aplicar_datatime(self):
+def Remplazo_nulos_y_aplicar_datatime(self) -> pd.DataFrame:
     """ 
     Se utilizan valores de las columnas "_golden" y no-golden, las cuales compartén valores,
-    para rellenar entre ellas los valoren nulos y faltantes.
-    Tambien se rellenarón valores de fechas de nacimiento con valores encontrados en Biourl.
+    así rellenar entre ellas los valoren nulos y faltantes.
+    Tambien se rellenarón valores a mano de fechas de nacimiento con valores encontrados en la columna "Biourl".
     Se cambia el formato de fechas a datatime.
     """
     self['year_of_award_gold'] = self['year_of_award_gold'].astype(str).str.replace(r'\.$', '', regex=True).fillna(pd.NA)

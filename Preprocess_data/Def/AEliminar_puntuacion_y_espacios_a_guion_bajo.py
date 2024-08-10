@@ -1,6 +1,6 @@
 import re
 
-def limpiar_valor(valor):
+def limpiar_valor(valor) -> str:
     """
     Remove punctuation and replace spaces with underscores in a string.
     """

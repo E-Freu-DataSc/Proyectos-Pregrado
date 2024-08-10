@@ -21,13 +21,16 @@ class PreprocessingSteps(Enum):
     GUARDAR_DATOS = 6
 
 class DataProcessor:
-    def __init__(self, data_path):
+    """Aplicacíon de EDA y guardado de datos en csv files"""
+    def __init__(self, data_path: str) -> None:
         self.data_path = data_path
         self.data = None
         self.categorical_columns = ["_golden", "_unit_state", "_trusted_judgments", "birthplace", "date_of_birth", "race_ethnicity", "sexual_orientation", "year_of_award", "award", "biourl", "birthplace_gold", "date_of_birth_gold", "movie", "person", "race_ethnicity_gold", "sexual_orientation_gold", "year_of_award_gold"]
         self.processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Data_used\processed"
 
-    def preprocess_data(self, stop_after_step=PreprocessingSteps.GUARDAR_DATOS):
+    def preprocess_data(self, stop_after_step=PreprocessingSteps.GUARDAR_DATOS) -> pd.DataFrame:
+        """Corresponde a aplicación del EDA en el dataset"""
+        
         self.data = pd.read_csv(self.data_path, encoding="latin1")
         
         columnas_a_limpiar = ['birthplace', 'race_ethnicity', 'religion', 'birthplace_gold', 'date_of_birth_gold', 'movie', 'person', 'race_ethnicity_gold', 'religion_gold', 'sexual_orientation_gold', 'award']
@@ -42,13 +45,18 @@ class DataProcessor:
             ('FORMATEAR_FECHAS', convertir_fecha),
             ('AJUSTES_FINALES', Ultimos_ajustes),
             ('AÑADIR_COORDENADAS', añadir_coordenadas),
-            ('GUARDAR_DATOS', self.save_processed_data)
+            ('GUARDAR_DATOS', self.save_processed_data)  # Note: Save function here
         ]
+        
         for step, func in steps:
             if stop_after_step.value >= PreprocessingSteps[step].value:
-                self.data = func(self.data)
+                if step == 'GUARDAR_DATOS':
+                    func()  # Call the save method without arguments
+                else:
+                    self.data = func(self.data)
 
-    def save_processed_data(self):
+
+    def save_processed_data(self) -> str: 
         """
         Save different subsets of the processed data to CSV files.
         """

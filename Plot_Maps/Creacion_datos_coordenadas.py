@@ -1,6 +1,7 @@
 import pandas as pd
 
-def añadir_coordenadas(oscar_df):
+def añadir_coordenadas(oscar_df: pd.DataFrame) -> pd.DataFrame:
+    "Creacion de 1 columna que las coordenadas de cada lugar de nacimiento"
     coordinates_dict = {
         'Port_Talbot_Wales': (51.5912, -3.7800),
         'East_Harlem_New_York_City': (40.7947, -73.9422),

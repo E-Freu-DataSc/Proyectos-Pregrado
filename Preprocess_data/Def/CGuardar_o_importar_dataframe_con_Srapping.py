@@ -10,7 +10,7 @@ formatos = [
     '%d-%b-%y',
     '%Y-%m-%d'
 ]
-def convertir_fecha(data):
+def convertir_fecha(data) -> pd.DataFrame:
     """
     Convierte las fechas en las columnas 'date_of_birth' y 'date_of_birth_gold' del DataFrame usando múltiples formatos.
     :param df: DataFrame que contiene las fechas a convertir.
@@ -31,8 +31,16 @@ def convertir_fecha(data):
     
     return data
 
-# Función para guardar o importar fechas de nacimiento scrapeadas
-def Guardar_o_importar_Srapping_fechas_nacimiento(data):
+def Guardar_o_importar_Srapping_fechas_nacimiento(data: pd.DataFrame) -> pd.DataFrame:
+    """
+    Guarda o importa las fechas de nacimiento obtenidas mediante scraping.
+
+    Esta función verifica si un archivo CSV con las fechas de nacimiento ya existe en la ruta especificada.
+    - Si el archivo existe, se carga y se devuelve como un DataFrame.
+    - Si el archivo no existe, se actualizan las fechas de nacimiento mediante la función `actualizar_fecha_nacimiento`, 
+      se guarda el DataFrame resultante en la ruta especificada, y luego se devuelve.
+      """ 
+       
     processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Data_used\processed"
     file_path = os.path.join(processed_data_path, "Scrapped.csv")
     
@@ -45,7 +53,9 @@ def Guardar_o_importar_Srapping_fechas_nacimiento(data):
         return updated_data
 
 # Función para actualizar las fechas de nacimiento mediante scraping
-def actualizar_fecha_nacimiento(data):
+def actualizar_fecha_nacimiento(data: pd.DataFrame) -> pd.DataFrame:
+    """ Realiza scrapping de las fechas de nacimiento en la pagina encotrada en columna "biourl" """
+    
     cols = ['biourl', 'person', 'date_of_birth', 'date_of_birth_gold']
     for index, row in data[data[cols].isnull().any(axis=1)][cols].iterrows():
         url = row['biourl']
