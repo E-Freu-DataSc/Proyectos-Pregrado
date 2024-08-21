@@ -53,7 +53,7 @@ False,finalized,Oak_Park_Il,1935-12-21,White,Straight,1976
 False,finalized,Brooklyn_Ny,1935-12-01,White,Straight,1978
 True,golden,New_York_City,1939-02-03,White,Straight,1979
 False,finalized,Waxahachie_Tx,1932-09-29,White,Straight,1980
-False,finalized,Santa_Monica_Ca,1936-08-18,White,Straight,1980
+False,finalized,Santa_Monica_Ca,,White,Straight,1980
 False,finalized,Richmond_Va,1937-03-30,White,Straight,1981
 False,finalized,Cambridge_England,1923-08-29,White,Straight,1982
 False,finalized,North_Bergen_Nj,1940-05-09,White,Straight,1983
@@ -83,7 +83,7 @@ False,finalized,Flushing_Ny,1942-11-17,White,Straight,2007
 False,finalized,St_Louis_Park_Mn,1957-09-21,White,Straight,2008
 True,golden,Manchester_England,1956-10-20,White,Straight,2009
 False,finalized,San_Carlos_Ca,1951-11-27,White,Straight,2009
-False,finalized,London_England,1972-01-01,White,Na,2011
+False,finalized,London_England,,White,Na,2011
 False,finalized,Paris_France,1967-03-29,White,Straight,2012
 False,finalized,Pingtung_Taiwan,1954-10-23,Asian,Straight,2013
 False,finalized,Rorschach_Switzerland,1884-07-23,White,Bisexual,1929
@@ -117,7 +117,7 @@ False,finalized,Hamden_Ct,1917-01-24,White,Straight,1956
 False,finalized,Vladivostok_Russia,1920-07-11,White,Straight,1957
 False,finalized,London_England,1914-04-02,White,Bisexual,1958
 False,finalized,London_England,1909-03-01,White,Straight,1959
-False,finalized,Evanston_Il,1923-10-04,White,Straight,1960
+False,finalized,Evanston_Il,,White,Straight,1960
 False,finalized,New_York_City,1913-11-02,White,Straight,1961
 False,finalized,Vienna_Austria,1930-12-08,White,Straight,1962
 False,finalized,La_Jolla_Ca,1916-04-05,White,Straight,1963
@@ -233,7 +233,7 @@ False,finalized,San_Saba_Tx,1946-09-15,White,Straight,1994
 False,finalized,Brooklyn_Ny,1931-06-20,White,Straight,1995
 False,finalized,South_Orange_Nj,1959-07-26,White,Matter of Dispute,1996
 False,finalized,Bronx_Ny,1968-01-02,Black,Straight,1997
-False,finalized,Chicago_Il,1951-07-21,White,Straight,1998
+False,finalized,Chicago_Il,,White,Straight,1998
 True,golden,Laurel_Ne,1928-08-31,White,Straight,1999
 False,finalized,Bermondsey_England,1933-03-14,White,Straight,2000
 False,finalized,Santurce_Puerto_Rico,1967-02-19,Hispanic,Straight,2001
@@ -270,7 +270,7 @@ False,finalized,Stockholm_Sweden,1915-08-29,White,Straight,1945
 False,finalized,San_Antonio_Tx,1905-03-23,White,Bisexual,1946
 False,finalized,Tokyo_Japan,1916-07-01,White,Straight,1947
 False,finalized,Salt_Lake_City_Ut,1913-01-06,White,Straight,1948
-False,finalized,St_Joseph_Mo,1917-01-05,White,Straight,1949
+False,finalized,St_Joseph_Mo,,White,Straight,1949
 False,finalized,Tokyo_Japan,1916-07-01,White,Straight,1950
 False,finalized,New_York_City,1921-06-21,White,Straight,1951
 False,finalized,Darjeeling_India,1913-11-05,White,Straight,1952

@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from Preprocess_data.Def.CGuardar_o_importar_dataframe_con_Srapping import Guardar_o_importar_Srapping_fechas_nacimiento, convertir_fecha 
+from Preprocess_data.Def.CGuardar_o_importar_dataframe_con_Srapping import Guardar_o_importar_Srapping_fechas_nacimiento, convertir_fecha
 from Preprocess_data.Def.BDefinir_remplazar_nulos_y_aplicar_datatime import Remplazo_nulos_y_aplicar_datatime
 from Preprocess_data.Def.AEliminar_puntuacion_y_espacios_a_guion_bajo import limpiar_valor
 from Preprocess_data.Def.DUltimos_ajustes import Ultimos_ajustes
@@ -9,24 +9,24 @@ from enum import Enum
 import sys
 
 # Añadir el directorio a sys.path
-sys.path.append(r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado")
-
+sys.path.append(r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Espacio_Trabajo_Oscars\Proyectos-Pregrado")
 
 class PreprocessingSteps(Enum):
     REMPLAZO_NULOS = 1
     SCRAPING_FECHAS = 2
     FORMATEAR_FECHAS = 3
-    AJUSTES_FINALES = 5
+    AJUSTES_FINALES = 4
     AÑADIR_COORDENADAS = 5
     GUARDAR_DATOS = 6
 
 class DataProcessor:
-    """Aplicacíon de EDA y guardado de datos en csv files"""
+    """Aplicación de EDA y guardado de datos en CSV files"""
     def __init__(self, data_path: str) -> None:
         self.data_path = data_path
         self.data = None
         self.categorical_columns = ["_golden", "_unit_state", "_trusted_judgments", "birthplace", "date_of_birth", "race_ethnicity", "sexual_orientation", "year_of_award", "award", "biourl", "birthplace_gold", "date_of_birth_gold", "movie", "person", "race_ethnicity_gold", "sexual_orientation_gold", "year_of_award_gold"]
-        self.processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Data_used\processed"
+        self.processed_data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Espacio_Trabajo_Oscars\Proyectos-Pregrado\Data_used\processed"
+    
 
     def preprocess_data(self, stop_after_step=PreprocessingSteps.GUARDAR_DATOS) -> pd.DataFrame:
         """Corresponde a aplicación del EDA en el dataset"""
@@ -44,7 +44,7 @@ class DataProcessor:
             ('SCRAPING_FECHAS', Guardar_o_importar_Srapping_fechas_nacimiento),
             ('FORMATEAR_FECHAS', convertir_fecha),
             ('AJUSTES_FINALES', Ultimos_ajustes),
-            ('AÑADIR_COORDENADAS', añadir_coordenadas),
+            ('AÑADIR_COORDENADAS', añadir_coordenadas), 
             ('GUARDAR_DATOS', self.save_processed_data)  # Note: Save function here
         ]
         
@@ -55,8 +55,7 @@ class DataProcessor:
                 else:
                     self.data = func(self.data)
 
-
-    def save_processed_data(self) -> str: 
+    def save_processed_data(self) -> None: 
         """
         Save different subsets of the processed data to CSV files.
         """
@@ -67,7 +66,7 @@ class DataProcessor:
             "Oscars_con_coordenadas.csv": ["birthplace", "date_of_birth", "race_ethnicity", "sexual_orientation", "year_of_award", "award", "movie", "person", "Coordinates"]
         }
 
-        base_dir = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Data_used\processed"
+        base_dir = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Espacio_Trabajo_Oscars\Proyectos-Pregrado\Data_used\processed"
         
         for filename, columns in save_paths.items():
             try:
@@ -83,6 +82,6 @@ class DataProcessor:
                 print(f"An error occurred while saving {filename}: {e}")
 
 if __name__ == "__main__":
-    data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Proyecto_7_Organizacion_Presentación_Esteban_Freudenberg_UDD\Github_Proyecto_7\Proyectos-Pregrado\Data_used\raw\Oscars-demographics-DFE.csv"
+    data_path = r"C:\Users\Usuario\OneDrive - udd.cl\Datos adjuntos\Bootcamp ciencia de datos\Modulo 7\Espacio_Trabajo_Oscars\Proyectos-Pregrado\Data_used\raw\Oscars-demographics-DFE.csv"
     processor = DataProcessor(data_path)
     processor.preprocess_data()
